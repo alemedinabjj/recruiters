@@ -67,7 +67,8 @@ export const Form = ({ user }: any) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "x-access-token": import.meta.env.VITE_API_ENVIAMAIL,
+        "x-access-token":
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjY2MDMxMDYwLCJleHAiOjE2NjY2MzU4NjB9.KAjO5ufNs72U0nDB-d7ojhZcyURJxI_olXkFDVFMwpo",
       },
 
       body: JSON.stringify({
