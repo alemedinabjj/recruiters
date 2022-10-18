@@ -63,7 +63,7 @@ export const Form = ({ user }: any) => {
   };
 
   const sendEmail = async () => {
-    const response = await fetch("http://www.api.ultronia.com/sendEmail", {
+    const response = await fetch("https://enviamail.herokuapp.com/sendEmail", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
