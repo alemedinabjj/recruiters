@@ -8,7 +8,7 @@ export const Card = ({ form, user, setFormList }: any) => {
       <div className="flex flex-col items-center justify-center">
         <div className="w-full">
           <div className="bg-white shadow-md rounded my-6">
-            <table className="text-left w-full border-collapse">
+            <table className="text-left w-full border-collapse ">
               <thead>
                 <tr>
                   <th className="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">Nome</th>

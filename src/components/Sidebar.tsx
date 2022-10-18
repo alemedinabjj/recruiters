@@ -9,8 +9,6 @@ export const Sidebar = ({ user }: any) => {
         <img src={user.avatar} alt="Foto do usuário" className="rounded-full h-20 w-20" />
         <div>
           <h2>Olá, {user.name}! Seja bem-vindo ao Agendamento de Entrevistas.</h2>
-
-          <p>Para agendar uma entrevista de um candidato, preencha o formulário abaixo e clique em "Agendar Entrevista".</p>
         </div>
       </div>
       <button
