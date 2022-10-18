@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import api from "../config/api";
 import { Card } from "./Card";
 import { v4 as uuidv4 } from "uuid";
-import emailjs from "emailjs-com";
 
 interface IFormList {
   name: string;
@@ -67,8 +66,7 @@ export const Form = ({ user }: any) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "x-access-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjY2MDMxMDYwLCJleHAiOjE2NjY2MzU4NjB9.KAjO5ufNs72U0nDB-d7ojhZcyURJxI_olXkFDVFMwpo",
+        "x-access-token": import.meta.env.VITE_API_ENVIAMAIL,
       },
 
       body: JSON.stringify({
