@@ -21,6 +21,8 @@ interface UserProps {
   time: string;
 }
 
+const EnviaMail = import.meta.env.VITE_API_ENVIAMAIL;
+
 export const Form = ({ user }: any) => {
   const initialValue = {
     name: "",
@@ -66,7 +68,7 @@ export const Form = ({ user }: any) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "x-access-token": import.meta.env.VITE_API_ENVIAMAIL,
+        "x-access-token": EnviaMail,
       },
 
       body: JSON.stringify({
