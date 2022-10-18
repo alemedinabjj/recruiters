@@ -22,11 +22,7 @@ interface UserProps {
   time: string;
 }
 
-interface IUser {
-  user: UserProps;
-}
-
-export const Form = ({ user }: IUser) => {
+export const Form = ({ user }: any) => {
   const initialValue = {
     name: "",
     email: "",
