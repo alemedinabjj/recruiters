@@ -13,6 +13,12 @@ export default {
     const result = await firebase.auth().signInWithPopup(provider);
     return result;
   },
+  githubPopup: async () => {
+    firebase.auth().useDeviceLanguage();
+    const provider = new firebase.auth.GithubAuthProvider();
+    const result = await firebase.auth().signInWithPopup(provider);
+    return result;
+  },
 
   addUser: async (user: any) => {
     await db.collection("users").doc(user.id).set(

@@ -33,7 +33,10 @@ export const Card = ({ form, user, setFormList }: any) => {
                 </tr>
               </tbody>
             </table>
-
+            <h4 className="py-4 px-6">
+              Faltam {Math.floor((new Date(form.date).getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24))} dias para a entrevista de{" "}
+              {form.name} no dia {form.date.split("-").reverse().join("/")} às {form.time} horas.
+            </h4>
             <div className="flex items-start justify-start py-4 px-6 ">
               <h3 className="text-blue-500  hover:text-blue-600">
                 Mensagem:

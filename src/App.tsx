@@ -1,7 +1,8 @@
-import { Form } from "./components/Form";
 import { Login } from "./components/Login";
 import { useState } from "react";
 import api from "./config/api";
+import { Home } from "./pages/Home";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Sidebar } from "./components/Sidebar";
 
 type IUser = {
@@ -55,8 +56,12 @@ function App() {
   return (
     <>
       <div className="bg-slate-900 min-h-screen flex flex-col">
-        <Sidebar user={user} />
-        <Form user={user} />
+        <BrowserRouter>
+          <Sidebar user={user} />
+          <Routes>
+            <Route path="/" element={<Home user={user} />} />
+          </Routes>
+        </BrowserRouter>
       </div>
     </>
   );

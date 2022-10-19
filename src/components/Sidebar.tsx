@@ -2,16 +2,7 @@ import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 import { PlusSmIcon } from "@heroicons/react/solid";
-
-const navigation = [
-  { name: "Dashboard", href: "#", current: true },
-  { name: "Entrevistas", href: "#", current: false },
-  { name: "Calendário", href: "#", current: false },
-];
-
-function classNames(...classes: any) {
-  return classes.filter(Boolean).join(" ");
-}
+import { Link } from "react-router-dom";
 
 export const Sidebar = ({ user }: any) => {
   function Logout() {
@@ -19,6 +10,11 @@ export const Sidebar = ({ user }: any) => {
     window.location.reload();
   }
 
+  const navigation = [{ name: "Dashboard", href: "/", current: true }];
+
+  function classNames(...classes: any) {
+    return classes.filter(Boolean).join(" ");
+  }
   const userNavigation = [
     { name: "Your Profile", href: "#" },
     { name: "Settings", href: "#" },
@@ -48,17 +44,19 @@ export const Sidebar = ({ user }: any) => {
                 </div>
                 <div className="hidden md:ml-6 md:flex md:items-center md:space-x-4">
                   {navigation.map((item) => (
-                    <a
-                      key={item.name}
-                      href={item.href}
-                      className={classNames(
-                        item.current ? "bg-gray-900 text-white" : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                        "px-3 py-2 rounded-md text-sm font-medium"
-                      )}
-                      aria-current={item.current ? "page" : undefined}
-                    >
-                      {item.name}
-                    </a>
+                    <Link to={item.href} key={item.name}>
+                      <a
+                        key={item.name}
+                        href={item.href}
+                        className={classNames(
+                          item.current ? "bg-gray-900 text-white" : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                          "px-3 py-2 rounded-md text-sm font-medium"
+                        )}
+                        aria-current={item.current ? "page" : undefined}
+                      >
+                        {item.name}
+                      </a>
+                    </Link>
                   ))}
                 </div>
               </div>
