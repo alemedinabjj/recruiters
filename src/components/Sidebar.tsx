@@ -10,13 +10,15 @@ export const Sidebar = ({ user }: any) => {
         <div>
           <h2>Olá, {user.name}! Seja bem-vindo ao Agendamento de Entrevistas.</h2>
         </div>
+        <div className="ml-auto">
+          <button
+            onClick={Logout}
+            className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline self-end"
+          >
+            Sair
+          </button>
+        </div>
       </div>
-      <button
-        onClick={Logout}
-        className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline self-end fixed bottom-10 right-10"
-      >
-        Sair
-      </button>
     </aside>
   );
 };

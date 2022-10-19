@@ -29,12 +29,24 @@ function App() {
 
     setUser(newUser as any);
 
-    localStorage.setItem("user", JSON.stringify(newUser));
+    createCookieWithLocalStorage(newUser);
   };
 
-  const response = user;
+  function createCookieWithLocalStorage(user: any) {
+    let date = new Date();
 
-  console.log(user);
+    let atualDate = date.valueOf();
+
+    let expireDate = date.setHours(date.getHours() + 12);
+
+    if (user && atualDate < expireDate) {
+      return localStorage.setItem("user", JSON.stringify(user));
+    }
+
+    if (user && atualDate > expireDate) {
+      return localStorage.removeItem("user");
+    }
+  }
 
   if (!user) {
     return <Login handleLoginData={handleLoginData} />;

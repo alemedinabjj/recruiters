@@ -36,12 +36,18 @@ export const Form = ({ user }: any) => {
 
   const [form, setForm] = useState(initialValue);
   const [formList, setFormList] = useState<IFormList[]>([]);
+  const [error, setError] = useState(false);
 
   const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     const { name, email, telephone, message, date, time } = form;
     e.preventDefault();
 
-    if (name && email && telephone && message && date && time) {
+    if (name.length < 3) {
+      setError(true);
+      return;
+    }
+
+    if (name && email && telephone && date && time) {
       setFormList([...formList, form]);
       setForm(initialValue);
 
@@ -63,6 +69,10 @@ export const Form = ({ user }: any) => {
     }
   };
 
+  const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+  console.log(regex.test(form.email));
+
   const sendEmail = async () => {
     const response = await fetch("https://enviamail.herokuapp.com/sendEmail", {
       method: "POST",
@@ -80,12 +90,15 @@ export const Form = ({ user }: any) => {
           Data: ${form.date}
           Horário: ${form.time}
           <br />
+
+          <br />
+          <br />
+
+          ${form.message}
           Boa sorte!
           `,
       }),
     });
-
-    console.log(response);
   };
 
   useEffect(() => {
@@ -128,7 +141,10 @@ export const Form = ({ user }: any) => {
               value={form.name}
               required
               onChange={(e) => setForm({ ...form, name: e.target.value })}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
+                (error && form.name.length < 3 && "border-red-500 focus:border-red-500 focus:shadow-outline-red") ||
+                "border-gray-300 focus:border-gray-300 focus:shadow-outline-gray"
+              }`}
             />
             <br />
             <label htmlFor="email" className="block text-gray-700 text-sm font-bold mb-2">
@@ -140,7 +156,9 @@ export const Form = ({ user }: any) => {
               onChange={(e) => setForm({ ...form, email: e.target.value })}
               required
               value={form.email}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
+                regex.test(form.email) && "border-green-500"
+              }`}
             />
             <br />
             <label htmlFor="telefone" className="block text-gray-700 text-sm font-bold mb-2">
@@ -152,7 +170,9 @@ export const Form = ({ user }: any) => {
               onChange={(e) => setForm({ ...form, telephone: e.target.value })}
               required
               value={form.telephone}
-              className="shadow appearance-none border rounded w-3/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
+                form.telephone.length === 11 && "border-green-500"
+              }`}
             />
             <br />
             <label htmlFor="data" className="block text-gray-700 text-sm font-bold mb-2">
