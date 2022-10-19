@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import api from "../config/api";
 import { Card } from "./Card";
 import { v4 as uuidv4 } from "uuid";
+import Notifications from "./Notifications";
 
 interface IFormList {
   name: string;
@@ -37,6 +38,7 @@ export const Form = ({ user }: any) => {
   const [form, setForm] = useState(initialValue);
   const [formList, setFormList] = useState<IFormList[]>([]);
   const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     const { name, email, telephone, message, date, time } = form;
@@ -50,6 +52,8 @@ export const Form = ({ user }: any) => {
     if (name && email && telephone && date && time) {
       setFormList([...formList, form]);
       setForm(initialValue);
+      setError(false);
+      setSuccess(true);
 
       await api.addNewForm(
         {
@@ -68,6 +72,16 @@ export const Form = ({ user }: any) => {
       sendEmail();
     }
   };
+
+  useEffect(() => {
+    if (success) {
+      const timeout = setTimeout(() => {
+        setSuccess(false);
+      }, 3000);
+
+      return () => clearTimeout(timeout);
+    }
+  }, [success]);
 
   const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
@@ -129,6 +143,7 @@ export const Form = ({ user }: any) => {
 
   return (
     <>
+      {success && <Notifications />}
       <div className="w-full px-5 md:px-20 mx-auto">
         <div className="md:flex w-full pt-6  mt-5 gap-7">
           <form action="index.html" method="POST" className="bg-white shadow-md rounded px-8 pb-8 pt-2  w-full" onSubmit={submitForm}>

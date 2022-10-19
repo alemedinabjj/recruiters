@@ -1,7 +1,8 @@
 import api from "../config/api";
+import { useState } from "react";
 
 export const Card = ({ form, user, setFormList }: any) => {
-  console.log(user.id);
+  const [deleteForm, setDeleteForm] = useState(false);
 
   return (
     <div>
@@ -48,6 +49,7 @@ export const Card = ({ form, user, setFormList }: any) => {
                 onClick={() => {
                   api.deleteForm(user, form);
                   setFormList((formList: any) => formList.filter((f: any) => f.id !== form.id));
+                  setDeleteForm(true);
                 }}
               >
                 Excluir

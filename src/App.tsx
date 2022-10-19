@@ -54,7 +54,7 @@ function App() {
 
   return (
     <>
-      <div className="bg-slate-900 min-h-screen flex flex-col ">
+      <div className="bg-slate-900 min-h-screen flex flex-col">
         <Sidebar user={user} />
         <Form user={user} />
       </div>
