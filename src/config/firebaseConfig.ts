@@ -1,5 +1,7 @@
+const APIKEY = import.meta.env.VITE_API_KEY;
+
 export default {
-  apiKey: "AIzaSyBrKWSEKSxeXyFnb469ggaFtPU-Skevsw8",
+  apiKey: APIKEY,
   authDomain: "agendamento-recruiter.firebaseapp.com",
   projectId: "agendamento-recruiter",
   storageBucket: "agendamento-recruiter.appspot.com",

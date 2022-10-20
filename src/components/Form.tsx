@@ -13,18 +13,20 @@ interface IFormList {
 }
 
 interface UserProps {
-  avatar: string | undefined;
-  id: string;
-  name: string;
-  email: string;
-  telephone: string;
-  date: string;
-  time: string;
+  user: {
+    avatar: string | undefined;
+    id: string;
+    name: string;
+    email: string;
+    telephone: string;
+    date: string;
+    time: string;
+  };
 }
 
 const EnviaMail = import.meta.env.VITE_API_ENVIAMAIL;
 
-export const Form = ({ user }: any) => {
+export const Form = ({ user }: UserProps) => {
   const initialValue = {
     name: "",
     email: "",
