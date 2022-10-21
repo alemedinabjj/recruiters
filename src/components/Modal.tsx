@@ -3,15 +3,15 @@ import { Dialog, Transition } from "@headlessui/react";
 import { ExclamationIcon } from "@heroicons/react/outline";
 import api from "../config/api";
 
-export default function Modal({ setDeleteForm, setFormList, form, user, deleteFormList }: any) {
+export default function Modal({ setDeleteForm, setFormList, form, user, saveForm }: any) {
   const [open, setOpen] = useState(true);
 
   const cancelButtonRef = useRef(null);
 
-  const handleDeleteForm = (user: { id: string | undefined }, form: { id: any }) => {
-    setDeleteForm(true);
-    api.deleteForm(user, form);
-    setFormList((formList: any[]) => formList.filter((f) => f.id !== form.id));
+  const handleDeleteForm = (user: { id: string | undefined }, saveForm: { id: string }) => {
+    setDeleteForm(false);
+    api.deleteForm(user, saveForm);
+    setFormList((formList: any[]) => formList.filter((f) => f.id !== saveForm.id));
   };
 
   return (
@@ -61,7 +61,7 @@ export default function Modal({ setDeleteForm, setFormList, form, user, deleteFo
                 <button
                   type="button"
                   className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
-                  onClick={() => handleDeleteForm(user, form)}
+                  onClick={() => handleDeleteForm(user, saveForm)}
                 >
                   Excluir
                 </button>

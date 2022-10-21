@@ -142,8 +142,6 @@ export const Form = ({ user }: UserProps) => {
     getForm();
   }, [user]);
 
-  console.log(formList);
-
   return (
     <>
       {success && <Notifications message="Entrevista salva!" text="A entrevista foi salva" />}
@@ -277,13 +275,7 @@ export const Form = ({ user }: UserProps) => {
             </div>
           </div>
         </div>
-
-        {
-          // Render the Card component for each form in the formList array
-          formList.map((form, index) => {
-            return <Card key={index} form={form} user={user} setFormList={setFormList} />;
-          })
-        }
+        <Card form={form} formList={formList} user={user} setFormList={setFormList} />;
       </div>
     </>
   );
