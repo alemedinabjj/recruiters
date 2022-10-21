@@ -145,7 +145,7 @@ export const Form = ({ user }: UserProps) => {
 
   return (
     <>
-      {success && <Notifications />}
+      {success && <Notifications message="Entrevista salva!" />}
       <div className="w-full px-5 md:px-20 mx-auto">
         <div className="md:flex w-full pt-6  mt-5 gap-7">
           <form action="index.html" method="POST" className="bg-white shadow-md rounded px-8 pb-8 pt-2  w-full" onSubmit={submitForm}>
@@ -249,7 +249,11 @@ export const Form = ({ user }: UserProps) => {
           <div className="w-full bg-black rounded text-white flex items-start flex-col">
             <div className="flex items-center">
               <div>
-                <img src={user.avatar} alt="logo" className="w-32 h-32 rounded-full p-5 mx-auto object-cover" />
+                <img
+                  src={user?.avatar ? user?.avatar : "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"}
+                  alt="logo"
+                  className="w-32 h-32 rounded-full p-5 mx-auto object-cover"
+                />
               </div>
               <div>
                 <h1>Olá {user.name},</h1>

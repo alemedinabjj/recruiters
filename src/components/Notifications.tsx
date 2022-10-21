@@ -3,13 +3,13 @@ import { Transition } from "@headlessui/react";
 import { CheckCircleIcon } from "@heroicons/react/outline";
 import { XIcon } from "@heroicons/react/solid";
 
-export default function Notifications() {
+export default function Notifications({ message }: any) {
   const [show, setShow] = useState(true);
 
   return (
     <>
       {/* Global notification live region, render this permanently at the end of the document */}
-      <div aria-live="assertive" className="fixed inset-0 flex items-end px-4 py-6 pointer-events-none sm:p-6 sm:items-start">
+      <div aria-live="assertive" className="fixed z-40 inset-0 flex items-end px-4 py-6 pointer-events-none sm:p-6 sm:items-start">
         <div className="w-full flex flex-col items-center space-y-4 sm:items-end">
           {/* Notification panel, dynamically insert this into the live region when it needs to be displayed */}
           <Transition
@@ -29,7 +29,7 @@ export default function Notifications() {
                     <CheckCircleIcon className="h-6 w-6 text-green-400" aria-hidden="true" />
                   </div>
                   <div className="ml-3 w-0 flex-1 pt-0.5">
-                    <p className="text-sm font-medium text-gray-900">Entrevista salva!</p>
+                    <p className="text-sm font-medium text-gray-900">{message}</p>
                     <p className="mt-1 text-sm text-gray-500">Anyone with a link can now view this file.</p>
                   </div>
                   <div className="ml-4 flex-shrink-0 flex">

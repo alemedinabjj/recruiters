@@ -5,6 +5,7 @@ import firebaseConfig from "./firebaseConfig";
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 const db = firebaseApp.firestore();
+const auth = firebase.auth();
 
 export default {
   googlePopup: async () => {
@@ -17,6 +18,27 @@ export default {
     firebase.auth().useDeviceLanguage();
     const provider = new firebase.auth.GithubAuthProvider();
     const result = await firebase.auth().signInWithPopup(provider);
+    return result;
+  },
+
+  loginWithEmailAndPass: async (email: any, password: any) => {
+    const result = await auth.signInWithEmailAndPassword(email, password);
+    return result;
+  },
+
+  userEmailAndPassword: async (email: any, password: any, name: any) => {
+    const result = await auth
+      .createUserWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        userCredential.user!.updateProfile({
+          displayName: name,
+        });
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+      });
     return result;
   },
 

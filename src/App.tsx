@@ -1,9 +1,10 @@
-import { Login } from "./components/Login";
+import { Login } from "./pages/Login";
 import { useState } from "react";
 import api from "./config/api";
 import { Home } from "./pages/Home";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Sidebar } from "./components/Sidebar";
+import { CreateAccount } from "./pages/CreateAccount";
 
 type IUser = {
   uid: any;
@@ -50,7 +51,14 @@ function App() {
   }
 
   if (!user) {
-    return <Login handleLoginData={handleLoginData} />;
+    return (
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Login handleLoginData={handleLoginData} setUser={setUser} />} />
+          <Route path="/createaccount" element={<CreateAccount />} />
+        </Routes>
+      </BrowserRouter>
+    );
   }
 
   return (

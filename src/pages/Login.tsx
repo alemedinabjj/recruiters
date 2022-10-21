@@ -1,7 +1,12 @@
 import api from "../config/api";
 import LOGINIMG from "../assets/login_img.jpg";
+import { Link } from "react-router-dom";
+import { useRef, useState } from "react";
 
-export const Login = ({ handleLoginData }: any) => {
+export const Login = ({ handleLoginData, setUser }: any) => {
+  const refEmail = useRef<HTMLInputElement>(null);
+  const refPassword = useRef<HTMLInputElement>(null);
+
   const handleGoogleLogin = async () => {
     let result = await api.googlePopup();
 
@@ -26,16 +31,25 @@ export const Login = ({ handleLoginData }: any) => {
     }
   };
 
+  const handleLoginWithEmailAndPass = async (e: any) => {
+    e.preventDefault();
+
+    let email = refEmail.current?.value;
+    let password = refPassword.current?.value;
+
+    let result = await api.loginWithEmailAndPass(email, password);
+
+    result ? console.log(result.user) : console.log("error");
+
+    try {
+      handleLoginData(result.user);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
-      {/*
-        This example requires updating your template:
-
-        ```
-        <html class="h-full bg-white">
-        <body class="h-full">
-        ```
-      */}
       <div className="min-h-screen flex m-auto">
         <div className="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
           <div className="mx-auto w-full max-w-sm lg:w-96">
@@ -43,9 +57,11 @@ export const Login = ({ handleLoginData }: any) => {
               <h2 className="mt-6 text-3xl font-extrabold text-gray-900">Faça login</h2>
               <p className="mt-2 text-sm text-gray-600">
                 Ou{" "}
-                <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
-                  crie sua conta
-                </a>
+                <Link to="/createaccount">
+                  <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
+                    crie sua conta
+                  </a>
+                </Link>
               </p>
             </div>
 
@@ -118,7 +134,7 @@ export const Login = ({ handleLoginData }: any) => {
               </div>
 
               <div className="mt-6">
-                <form action="#" method="POST" className="space-y-6">
+                <form method="POST" className="space-y-6" onSubmit={handleLoginWithEmailAndPass}>
                   <div>
                     <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                       Email address
@@ -126,6 +142,7 @@ export const Login = ({ handleLoginData }: any) => {
                     <div className="mt-1">
                       <input
                         id="email"
+                        ref={refEmail}
                         name="email"
                         type="email"
                         autoComplete="email"
@@ -142,6 +159,7 @@ export const Login = ({ handleLoginData }: any) => {
                     <div className="mt-1">
                       <input
                         id="password"
+                        ref={refPassword}
                         name="password"
                         type="password"
                         autoComplete="current-password"
