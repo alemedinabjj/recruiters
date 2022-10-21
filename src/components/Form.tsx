@@ -28,6 +28,7 @@ const EnviaMail = import.meta.env.VITE_API_ENVIAMAIL;
 
 export const Form = ({ user }: UserProps) => {
   const initialValue = {
+    id: uuidv4(),
     name: "",
     email: "",
     telephone: "",
@@ -43,7 +44,7 @@ export const Form = ({ user }: UserProps) => {
   const [success, setSuccess] = useState(false);
 
   const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
-    const { name, email, telephone, message, date, time } = form;
+    const { name, email, telephone, message, date, time, id } = form;
     e.preventDefault();
 
     if (name.length < 3) {
@@ -59,7 +60,7 @@ export const Form = ({ user }: UserProps) => {
 
       await api.addNewForm(
         {
-          id: uuidv4(),
+          id: id,
           name,
           email,
           telephone,
@@ -145,7 +146,7 @@ export const Form = ({ user }: UserProps) => {
 
   return (
     <>
-      {success && <Notifications message="Entrevista salva!" />}
+      {success && <Notifications message="Entrevista salva!" text="A entrevista foi salva" />}
       <div className="w-full px-5 md:px-20 mx-auto">
         <div className="md:flex w-full pt-6  mt-5 gap-7">
           <form action="index.html" method="POST" className="bg-white shadow-md rounded px-8 pb-8 pt-2  w-full" onSubmit={submitForm}>

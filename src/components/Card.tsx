@@ -1,11 +1,14 @@
 import api from "../config/api";
 import { useState } from "react";
+import Modal from "./Modal";
 
 export const Card = ({ form, user, setFormList }: any) => {
   const [deleteForm, setDeleteForm] = useState(false);
+  console.log(user);
 
   return (
     <div>
+      {deleteForm && <Modal setDeleteForm={setDeleteForm} form={form} setFormList={setFormList} user={user} />}
       <div className="flex flex-col items-center justify-center">
         <div className="w-full">
           <div className="bg-white shadow-md rounded my-6">
@@ -50,8 +53,6 @@ export const Card = ({ form, user, setFormList }: any) => {
                 className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ml-auto"
                 type="button"
                 onClick={() => {
-                  api.deleteForm(user, form);
-                  setFormList((formList: any) => formList.filter((f: any) => f.id !== form.id));
                   setDeleteForm(true);
                 }}
               >

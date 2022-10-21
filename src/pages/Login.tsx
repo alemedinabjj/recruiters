@@ -177,6 +177,7 @@ export const Login = ({ handleLoginData, setUser }: any) => {
                         type="checkbox"
                         className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
                       />
+
                       <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
                         Remember me
                       </label>
@@ -203,7 +204,7 @@ export const Login = ({ handleLoginData, setUser }: any) => {
           </div>
         </div>
         <div className="hidden lg:block relative w-0 flex-1">
-          <img className="absolute inset-0 h-full w-full object-cover" src={LOGINIMG} alt="" />
+          <img className="absolute inset-0 h-full w-full object-cover" src={LOGINIMG} alt="Wallpapper" />
         </div>
       </div>
     </>
