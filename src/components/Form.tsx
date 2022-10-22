@@ -145,8 +145,8 @@ export const Form = ({ user }: UserProps) => {
   return (
     <>
       {success && <Notifications message="Entrevista salva!" text="A entrevista foi salva" />}
-      <div className="w-full px-5 md:px-20 mx-auto">
-        <div className="md:flex w-full pt-6  mt-5 gap-7">
+      <div className="w-full px-5 md:px-20 mx-auto max-w-7xl">
+        <div className="md:flex w-full pt-6  mt-5 gap-7 px-4 sm:px-6 lg:px-8 py-10">
           <form action="index.html" method="POST" className="bg-white shadow-md rounded px-8 pb-8 pt-2  w-full" onSubmit={submitForm}>
             <label htmlFor="nome" className="block text-gray-700 text-sm font-bold mb-2">
               Nome:
@@ -242,7 +242,7 @@ export const Form = ({ user }: UserProps) => {
             <input
               type="submit"
               value="Agendar Entrevista"
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer"
             />
           </form>
           <div className="w-full bg-black rounded text-white flex items-start flex-col">
