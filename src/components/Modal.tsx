@@ -3,7 +3,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { ExclamationIcon } from "@heroicons/react/outline";
 import api from "../config/api";
 
-export default function Modal({ setDeleteForm, setFormList, form, user, saveForm }: any) {
+export default function Modal({ setDeleteForm, setFormList, user, saveForm }: any) {
   const [open, setOpen] = useState(true);
 
   const cancelButtonRef = useRef(null);
@@ -53,7 +53,7 @@ export default function Modal({ setDeleteForm, setFormList, form, user, saveForm
                     Excluir entrevista?
                   </Dialog.Title>
                   <div className="mt-2">
-                    <p className="text-sm text-gray-500">Tem certeza que deseja excluir a entrevista {form.name}?</p>
+                    <p className="text-sm text-gray-500">Tem certeza que deseja excluir a entrevista do candidato {saveForm.name}?</p>
                   </div>
                 </div>
               </div>
@@ -71,7 +71,7 @@ export default function Modal({ setDeleteForm, setFormList, form, user, saveForm
                   onClick={() => setDeleteForm(false)}
                   ref={cancelButtonRef}
                 >
-                  Cancel
+                  Cancelar
                 </button>
               </div>
             </div>

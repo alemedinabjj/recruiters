@@ -127,6 +127,4 @@ export default {
         }),
       });
   },
-
-  //function to delete form from database
 };

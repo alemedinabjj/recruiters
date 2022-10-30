@@ -16,7 +16,7 @@ export const Sidebar = ({ user }: any) => {
     return classes.filter(Boolean).join(" ");
   }
   const userNavigation = [
-    { name: "Your Profile", href: "#" },
+    { name: "Your Profile", href: "/profile" },
     { name: "Settings", href: "#" },
     { name: "Sign out", href: "/", onClick: Logout },
   ];
@@ -87,7 +87,7 @@ export const Sidebar = ({ user }: any) => {
                         <img
                           className="h-8 w-8 rounded-full"
                           src={user?.avatar ? user?.avatar : "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"}
-                          alt=""
+                          alt={user.name}
                         />
                       </Menu.Button>
                     </div>
@@ -142,7 +142,11 @@ export const Sidebar = ({ user }: any) => {
             <div className="pt-4 pb-3 border-t border-gray-700">
               <div className="flex items-center px-5 sm:px-6">
                 <div className="flex-shrink-0">
-                  <img className="h-10 w-10 rounded-full" src={user.imageUrl} alt="" />
+                  <img
+                    className="h-10 w-10 rounded-full"
+                    src={user?.avatar ? user?.avatar : "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"}
+                    alt={user.name}
+                  />
                 </div>
                 <div className="ml-3">
                   <div className="text-base font-medium text-white">{user.name}</div>
@@ -163,6 +167,7 @@ export const Sidebar = ({ user }: any) => {
                     as="a"
                     href={item.href}
                     className="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700"
+                    onClick={item.onClick}
                   >
                     {item.name}
                   </Disclosure.Button>
