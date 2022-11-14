@@ -16,4 +16,5 @@ export interface IFormList {
   telephone: string;
   date: string;
   time: string;
+  id: string;
 }

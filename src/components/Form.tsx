@@ -91,23 +91,66 @@ export const Form = ({ user }: UserProps) => {
 
   return (
     <>
-      {success && <Notifications message="Entrevista salva!" text="A entrevista foi salva" />}
+      {success && (
+        <Notifications
+          message="Entrevista salva!"
+          text="A entrevista foi salva"
+        />
+      )}
       <div className="w-full px-5 md:px-20 mx-auto max-w-7xl">
         <div className="md:flex w-full pt-6  mt-5 gap-7 px-4 sm:px-6 lg:px-8 py-10">
-          <form action="index.html" method="POST" className="bg-white shadow-md rounded px-8 pb-8 pt-2  w-full" onSubmit={handleSubmit(submitForm)}>
-            <Input label="Nome" id="name" type="text" error={errors.name?.message} {...register("name")} />
+          <form
+            action="index.html"
+            method="POST"
+            className="bg-white shadow-md rounded px-8 pb-8 pt-2  w-full"
+            onSubmit={handleSubmit(submitForm)}
+          >
+            <Input
+              label="Nome"
+              id="name"
+              type="text"
+              error={errors.name?.message}
+              {...register("name")}
+            />
             <br />
-            <Input label="Email" id="email" type="email" error={errors.email?.message} {...register("email")} />
+            <Input
+              label="Email"
+              id="email"
+              type="email"
+              error={errors.email?.message}
+              {...register("email")}
+            />
             <br />
-            <Input label="Telefone" id="telephone" type="text" error={errors.telephone?.message} {...register("telephone")} />
+            <Input
+              label="Telefone"
+              id="telephone"
+              type="text"
+              error={errors.telephone?.message}
+              {...register("telephone")}
+            />
             <br />
-            <Input label="Data" id="date" type="date" error={errors.date?.message} {...register("date")} />
+            <Input
+              label="Data"
+              id="date"
+              type="date"
+              error={errors.date?.message}
+              {...register("date")}
+            />
             <br />
-            <Input label="Horário" id="time" type="time" error={errors.time?.message} {...register("time")} />
+            <Input
+              label="Horário"
+              id="time"
+              type="time"
+              error={errors.time?.message}
+              {...register("time")}
+            />
             <br />
 
             <br />
-            <label htmlFor="mensagem" className="block text-gray-700 text-sm font-bold mb-2">
+            <label
+              htmlFor="mensagem"
+              className="block text-gray-700 text-sm font-bold mb-2"
+            >
               Mensagem (opcional):
             </label>
             <textarea
@@ -126,7 +169,11 @@ export const Form = ({ user }: UserProps) => {
             <div className="flex items-center">
               <div>
                 <img
-                  src={user?.avatar ? user?.avatar : "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"}
+                  src={
+                    user?.avatar
+                      ? user?.avatar
+                      : "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"
+                  }
                   alt="logo"
                   className="w-32 h-32 rounded-full p-5 mx-auto object-cover"
                 />
@@ -134,12 +181,16 @@ export const Form = ({ user }: UserProps) => {
               <div>
                 <h1>Olá {user.name},</h1>
                 <h3>
-                  Você tem um total de <span className="text-blue-500">{formList.length}</span> agendamentos
+                  Você tem um total de{" "}
+                  <span className="text-blue-500">{formList.length}</span>{" "}
+                  agendamentos
                 </h3>
               </div>
             </div>
             <div className="self-end px-20">
-              <h3 className="text-2xl mb-5">Um breve tutorial de como agendar uma entrevista:</h3>
+              <h3 className="text-2xl mb-5">
+                Um breve tutorial de como agendar uma entrevista:
+              </h3>
               <ul className="list-disc list-inside">
                 <li>Insira o nome do candidato completo</li>
                 <li>Insira o email do candidato</li>
@@ -152,7 +203,13 @@ export const Form = ({ user }: UserProps) => {
             </div>
           </div>
         </div>
-        <Card formList={formList} user={user} setFormList={setFormList} />;
+        <Card
+          formList={formList}
+          user={user}
+          setFormList={setFormList}
+          form={[]}
+        />
+        ;
       </div>
     </>
   );
